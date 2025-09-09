@@ -1,51 +1,42 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Node{
-    public:
-    int data ;
-    Node* next ;
-
-    //constructor
-    Node(int data) {
-        this -> data = data ;
-        this -> next = NULL ;
-    }
+struct Node {
+    int data;
+    Node* next;
 };
 
-void InsertAtHead(Node* &head, int d) { //Node* &head is a reference node so that copies are not created
-
-    //creating a new node
-    Node* temp = new Node(d) ;
-    temp -> next = head ;
-    head = temp ;
-
+// Function to insert a new node at the head
+void InsertAtHead(Node* &head, int d) {
+    Node* temp = new Node;
+    temp->data = d;
+    temp->next = head;
+    head = temp;
 }
 
-void print(Node* &head){
-
-    Node* temp = head ; //one more pointer pointing towards head
-    while(temp != NULL){
-        cout << temp -> data << " ";
-        temp = temp -> next ;
+// Function to print the linked list
+void print(Node* head) {
+    Node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
     }
-    cout << endl ;
+    cout << endl;
 }
+
 int main() {
+    Node* head = NULL;  // initially empty list
+    int n, val;
 
-    // created a new node
-    Node* node1 = new Node(10);
-    //cout << node1 -> data << endl ;
-    //cout << node1 -> next << endl ;
+    cout << "Enter number of nodes: ";
+    cin >> n;
 
-    // head pointed to node1
-    Node* head = head ;
+    cout << "Enter " << n << " values:" << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        InsertAtHead(head, val);
+        print(head);
+    }
 
-    print(head) ;
-    InsertAtHead(head, 12) ;
-    print(head) ;
-    InsertAtHead(head, 15);
-    print(head);
-
-    return 0 ;
+    return 0;
 }
